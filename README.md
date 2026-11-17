@@ -150,7 +150,7 @@ To select multiple messages using the keyboard:
 ```sh
 # Install dependencies (Ubuntu; Webxdc is enabled by default)
 sudo apt install valac meson libgtk-4-dev libadwaita-1-dev libjson-glib-dev \
-  libwebkitgtk-6.0-dev
+  libwebkitgtk-6.0-dev libseccomp-dev bubblewrap
 
 # Install the RPC backend for source builds
 pip install deltachat-rpc-server
@@ -164,7 +164,7 @@ On GNOME, install the desktop entry with `sudo make install` so the app
 switcher can resolve Parla's name and icon, especially on Wayland.
 
 The desktop build also produces **`parla-cli`**, with a line-oriented REPL and
-a BitchX-style terminal interface on Linux and macOS.
+a styled, tabbed terminal interface on Linux and macOS.
 For a CLI-only build, install Vala, Meson, a C compiler, GLib/GIO and JSON-GLib
 development files, then run:
 
@@ -176,21 +176,28 @@ meson compile -C builddir-cli
 
 This build does not require GTK, libadwaita or WebKit. On macOS it also uses
 the system Foundation framework. Use `-Dcli=false` for a GUI-only build.
-Interactive terminals open the TUI by default. Click contacts or tabs to
+Interactive terminals open the TUI with a welcome in the Parla tab, connection
+activity, notifications, and a summary of unread conversations. Type `/help`
+for commands and keyboard shortcuts. Click contacts or tabs to
 select them, use the wheel to scroll, or press Ctrl-G and navigate contacts
 with `j`/`k` or arrows. Contacts has its own permanent tab, with aligned pin,
 unread, time and grey message-preview columns. Use `g` to group chats, `a`
 to sort alphabetically or by activity, and `p` to pin/unpin. Its badge counts
-unread messages from chats without open tabs. Esc+number selects a tab; Esc+x, `/close`, or middle-click
+unread messages from chats without open tabs. Esc+number selects a tab; Esc+x or middle-click
 closes it. Ctrl-W deletes a word, Ctrl-B/F pages through messages, and
 Ctrl-P/N recalls shared input history. Tab completes `/commands` and `@members`.
 Command output goes to the Parla tab. `/account` switches profiles,
-`/query name|address` opens or starts a direct chat, and `/invite` displays a QR/link.
+`/query name|address` opens or starts a direct chat; `/query` alone closes the current tab.
+`/invite` displays a QR/link.
 Click a message for `/reply`, `/react` or `/unreact`; `/reply` alone opens a
 keyboard selector. `/reply text` defaults to the latest incoming message,
 and `/reply @user text` chooses that user's latest message. Image/file
 attachments provide clickable terminal hyperlinks to local files.
-`/color` configures themes; layout and color preferences persist across runs.
+`/theme` lists `default`, `ocean`, `forest`, `ember`, `ansi`, and `mono`;
+`/theme ocean` selects one. `/color ROLE=COLOR` saves an override, and
+`/color ROLE=inherit` clears it. `/theme reset` removes saved colors and restores
+the shipped defaults. Layout preferences live in `parla/terminal.ini` and colors
+in `parla/colors.ini` under the user config directory; both persist across runs.
 Piped input uses the line-oriented REPL.
 The REPL supports `accounts`, `account ID`, `chats`, `messages CHAT_ID`,
 `send CHAT_ID TEXT`, `settings`, `updates`, `rpc METHOD [JSON_ARRAY]`, and `quit`.
@@ -330,7 +337,7 @@ To build and run it from the source tree:
 
 ```sh
 # Ubuntu/Debian build dependency
-sudo apt install libwebkitgtk-6.0-dev
+sudo apt install libwebkitgtk-6.0-dev libseccomp-dev bubblewrap
 
 make run
 # Or with Meson directly:
@@ -358,9 +365,14 @@ On Windows, use the bundle command above. For a direct Meson build, extract
 the official `Microsoft.Web.WebView2` NuGet package and pass its root as
 `-Dwebview2_sdk=/path/to/package`.
 
-Webxdc attachments contain untrusted JavaScript, so Parla deliberately does
-not fall back to running them without the web-engine sandbox. On Linux,
-WebKitGTK uses bubblewrap and unprivileged user namespaces for that sandbox.
+Each Webxdc runs in a separate native helper behind a bounded IPC interface.
+The helper has no account/core connection. Linux uses bubblewrap namespaces
+and seccomp, macOS uses a signed App Sandbox XPC service, and Windows uses a
+fresh AppContainer plus a Job Object. A failed sandbox launch closes the app.
+Linux requires **Wayland**: directly exposing X11 would let a compromised
+helper inspect or control other applications. Flatpak uses a restricted
+`flatpak-spawn --sandbox` child. On native Linux, both the helper sandbox and
+WebKitGTK's renderer sandbox require unprivileged user namespaces.
 Ubuntu 24.04 and newer may restrict those namespaces through AppArmor; without
 an application policy WebKitGTK can fail with `bwrap: setting up uid map:
 Permission denied`.
@@ -379,10 +391,15 @@ restriction is active. Direct installs on systems without that restriction do
 not install the policy.
 Running `make run` directly from a build directory is not covered by the
 installed-binary policy on restricted Ubuntu systems; install the binary first
-and run the installed `parla` executable. Parla detects this specific unsafe
-host state and refuses to launch the app with an error instead of disabling the
-WebKit sandbox or allowing WebKitGTK to abort. Flatpak uses its own sandbox and
+and run the installed `parla` executable. Failed helper startup is reported
+without an unsandboxed fallback. Flatpak uses its own sandbox and
 does not install a host AppArmor profile.
+
+On macOS, run the signed `.app` produced by `make run` or the bundle scripts;
+the build-directory executable has no embedded XPC service. WKWebView requires
+the network-client entitlement even for local HTML, so macOS offline mode
+uses browser request policies rather than native network denial. See the
+documented [platform boundaries](docs/webxdc.md#security-boundaries).
 
 See [docs/webxdc.md](docs/webxdc.md) for the implementation, security
 boundaries, and currently exposed JavaScript API.

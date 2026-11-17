@@ -19,7 +19,7 @@ private void renderer_test () {
     string change = renderer.render (frame);
     assert (!change.contains ("\033[2J"));
     assert (change.contains ("\033[5;2H"));
-    assert (change.length < 40);
+    assert (change.length < 80); // Includes truecolor foreground/background escapes.
     frame.cursor_x = 3;
     assert (renderer.render (frame) == "\033[1;4H");
     renderer.invalidate ();
@@ -54,6 +54,12 @@ private void text_test () {
     assert (many.line_count (1000) == 16001);
     rows = many.wrap (1000, 16000, 5);
     assert (rows.length == 1 && rows.get (0).plain_text ().strip () == "last");
+    var notice = new Text.notice ("12:34", "Unread", "**literal**\033[2J\n日本語", Style.CODE);
+    rows = notice.wrap (50);
+    assert (rows.get (0).plain_text ().contains ("**literal**[2J"));
+    assert (column_of (rows.get (1).plain_text (), "日本語") == 21);
+    for (int width = 1; width < 60; width++)
+        assert (notice.wrap (width).length == notice.line_count (width));
 }
 
 private void input_test () {
@@ -162,10 +168,10 @@ private void editor_test () {
 private void completion_test () {
     var completion = new Parla.Terminal.Completion ();
     var editor = new Editor ();
-    string[] commands = { "/close", "/query", "/set", "/version" };
+    string[] commands = { "/part", "/query", "/set", "/version" };
     editor.insert ("/"); completion.complete (editor, commands);
     assert (editor.text == "/" && completion.hint.contains ("/version"));
-    completion.complete (editor, commands); assert (editor.text == "/close ");
+    completion.complete (editor, commands); assert (editor.text == "/part ");
     completion.complete (editor, commands, true); assert (editor.text == "/version ");
     editor.clear (); editor.insert ("/ver more");
     for (int i = 0; i < 5; i++) editor.handle (Key.LEFT, 80);
@@ -215,7 +221,7 @@ private void contacts_tab_test () {
     view.handle_key (Key.SELECT_TAB, "2");
     var frame = view.draw (80, 24);
     assert (frame.get_row (0).plain_text ().contains ("2:Contacts"));
-    assert (frame.get_row (3).plain_text ().has_prefix ("*    Bob"));
+    assert (frame.get_row (3).plain_text ().has_prefix ("●    Bob"));
     assert (!frame.get_row (3).plain_text ().contains ("│"));
     view.handle_key (Key.TEXT, "j"); view.handle_key (Key.ENTER);
     assert (selected == "b" && view.active_buffer.id == "b");
@@ -241,8 +247,13 @@ private void message_format_test () {
     var block = new Text.block ("▄▄\n▀▀", 2, Style.QR);
     assert (block.wrap (1).get (0).plain_text () == "[");
     assert (block.wrap (3).get (0).plain_text ().has_prefix ("▄▄"));
-    foreach (var preset in new string[] { "default", "light", "ocean" }) {
+    foreach (var preset in Theme.PRESETS) {
         var theme = new Theme (preset);
+        foreach (var role in Theme.ROLES) assert (Theme.valid_color (theme.get_color (role)));
+        if (preset == "mono") {
+            assert (theme.codes (Style.OWN_NICK) == theme.codes (Style.NICK1));
+            continue;
+        }
         foreach (Style remote in new Style[] { Style.NICK1, Style.NICK2, Style.NICK3, Style.NICK4 })
             assert (theme.codes (Style.OWN_NICK) != theme.codes (remote));
         theme.set_color ("nick1", theme.get_color ("own_nick"));
@@ -251,10 +262,36 @@ private void message_format_test () {
     assert (Theme.valid_color ("#123ABC:blue"));
     assert (!Theme.valid_color ("#123:blue") && !Theme.valid_color ("red:blue:green"));
     var ocean = new Theme ("ocean");
-    assert (ocean.codes (Style.INPUT) == ";39;48;2;15;23;42");
+    assert (ocean.codes (Style.INPUT) == ";38;2;203;213;225;48;2;16;21;33");
     ocean.set_color ("text", "white:#abcdef");
-    assert (ocean.codes (Style.INPUT) == ";39;48;2;171;205;239");
+    assert (ocean.codes (Style.INPUT) == ";38;2;203;213;225;48;2;171;205;239");
     assert (ocean.codes (Style.OWN_NICK) == ";38;2;74;222;128;48;2;171;205;239");
+}
+
+private void theme_test () {
+    var shipped = new Theme ();
+    foreach (var preset in Theme.PRESETS) {
+        var theme = new Theme (preset);
+        bool basic = preset == "ansi" || preset == "mono";
+        foreach (var role in Theme.ROLES) {
+            string[] pair = theme.get_color (role).split (":");
+            if (basic) assert (!theme.get_color (role).contains ("#") && pair.length == 1);
+            else {
+                string[] original = shipped.get_color (role).split (":");
+                assert (pair.length == original.length);
+                if (pair.length == 2) assert (pair[1] == original[1]);
+            }
+        }
+        if (basic) {
+            foreach (Style style in new Style[] { Style.NORMAL, Style.OWN_NICK, Style.NICK1, Style.INPUT, Style.QR }) {
+                assert (!theme.codes (style).contains (";38;") && !theme.codes (style).contains (";48;"));
+                if (preset == "mono" && style != Style.QR) assert (theme.codes (style) == ";39;49");
+            }
+            foreach (Style style in new Style[] { Style.ACTIVE_TAB, Style.SELECTED | Style.CONTACT, Style.SELECTED | Style.MESSAGE })
+                assert (theme.codes (style).has_suffix (";7"));
+            assert (!theme.codes (Style.MESSAGE).contains (";7"));
+        }
+    }
 }
 
 private void navigation_test () {
@@ -316,7 +353,7 @@ private void view_test () {
     frame = view.draw (80, 24);
     assert (frame.get_row (5) == history);
     string edit = renderer.render (frame);
-    assert (edit.length < 60 && edit.contains ("hello"));
+    assert (edit.length < 100 && edit.contains ("hello"));
     other.append_text ("background");
     assert (renderer.render (view.draw (80, 24)) == "");
     view.set_contacts ({ new Contact ("a", "Alice", "online", 0, ContactKind.DIRECT, false, 1, "12:00", "new preview") });
@@ -361,19 +398,21 @@ private void irc_layout_test () {
     var frame = view.draw (80, 24);
     assert (frame.get_row (1).plain_text ().has_prefix ("14:05 <Alice> Hello world"));
     string ansi = renderer.render (frame);
-    assert (Regex.match_simple ("\\x1b\\[0;1;(94|35|36|33);49mAlice", ansi));
-    assert (ansi.contains ("\033[0;1;33;49m 1:Alice (2) "));
+    var theme = new Theme ();
+    assert (ansi.contains ("mAlice"));
+    assert (theme.codes (Style.ACTIVE_TAB | Style.UNREAD_TAB) == theme.codes (Style.ACTIVE_TAB));
+    assert (ansi.contains ("\033[0;1" + theme.codes (Style.ACTIVE_TAB) + "m 1:Alice (2) "));
     Row history = frame.get_row (1);
     bob.set_unread (3);
     frame = view.draw (80, 24);
     assert (frame.get_row (1) == history);
-    assert (renderer.render (frame).contains ("\033[0;1;33;49m 2:Bob (3) "));
+    assert (renderer.render (frame).contains ("\033[0;1" + theme.codes (Style.UNREAD_TAB) + "m 2:Bob (3) "));
     bob.set_unread (0);
     alice.editor.insert ("saved draft");
     view.handle_key (Key.FOCUS);
     frame = view.draw (80, 24);
     assert (!frame.cursor_visible && !frame.get_row (1).plain_text ().contains ("[focus]"));
-    assert (frame.get_row (2).plain_text ().has_prefix ("*    Alice"));
+    assert (frame.get_row (2).plain_text ().has_prefix ("●    Alice"));
     view.select_tab ("a");
     assert (view.close_tab ("a"));
     assert (view.add_tab ("a", "Alice") == alice);
@@ -423,7 +462,7 @@ private void contacts_order_test () {
     view.handle_key (Key.DOWN); view.handle_key (Key.ENTER);
     assert (activated == "a");
     var renderer = new Renderer ();
-    assert (renderer.render (view.draw (100, 24)).contains ("38;2;153;153;153"));
+    assert (renderer.render (view.draw (100, 24)).contains ("38;2;142;155;176"));
     assert (renderer.render (view.draw (100, 24)) == "");
     view.set_contacts_grouped (false);
     view.set_contacts ({
@@ -493,6 +532,7 @@ int main (string[] args) {
     Test.add_func ("/terminal/shared-history", shared_history_test);
     Test.add_func ("/terminal/contacts-tab", contacts_tab_test);
     Test.add_func ("/terminal/message-format", message_format_test);
+    Test.add_func ("/terminal/themes", theme_test);
     Test.add_func ("/terminal/contact-order", contacts_order_test);
     Test.add_func ("/terminal/message-selection", message_selection_test);
     Test.add_func ("/terminal/hyperlinks", hyperlink_test);

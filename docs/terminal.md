@@ -15,7 +15,18 @@ meson test -C builddir-cli terminal terminal-pty terminal-commands cli --print-e
 ```
 
 Interactive stdin/stdout select the TUI automatically; piped input uses the
-line-oriented REPL. The permanent Contacts tab lists conversations, including contacts and groups,
+line-oriented REPL. The Parla tab welcomes you with a short introduction and
+an invitation to use `/help`. Its timestamped activity feed records connection
+changes, unread conversation names and counts (with `/join ID` shortcuts),
+incoming reactions, delivery failures, and Core warnings/errors. Unchanged
+connection states and unread snapshots are suppressed. Read receipts update
+the summary without adding a notification badge; reaching zero unread shows
+an all-caught-up message. Background activity preserves your scroll position.
+Each account keeps its own activity history, including events received while
+another account is selected. The status bar puts connection state first and
+shows the account's total unread count when outside a chat.
+
+The permanent Contacts tab lists conversations, including contacts and groups,
 with unread counts. Open one to load its latest 100 messages. Core events
 refresh the conversation list and active tab; switching tabs refreshes that
 tab. Group/channel labels have a `#` prefix and direct chats an `@` prefix
@@ -24,7 +35,7 @@ Messages use `HH:MM <nick> text`, with a stable color for each sender
 and Markdown in the body. Continuation lines align with the body after the
 nick. Own nicks use a separate color from remote senders. Pending messages
 show `--:--` until Core reports delivery, when the timestamp updates in place.
-Unread contacts have `*` before their name; pinned chats have 📌 in a separate
+Unread contacts have a `●` marker and bold names; pinned chats have 📌 in a separate
 column. Both marker columns reserve their space so every name, time and
 grey message preview stays aligned. Open conversations are cyan and the
 selected contact has a background highlight. Unread chat tabs show their
@@ -36,7 +47,7 @@ displayed incoming messages as read and clears its unread marker.
 Commands work from every chat. Their replies and errors go to the permanent
 Parla tab, which gets an unread marker when output arrives in the background.
 Esc+1 selects Parla. `/help` lists commands and keys; `/version` prints the
-version; `/quit` exits. `/close` and `/part` close the current tab. Reopening
+version; `/quit` exits. `/part` and a bare `/query` close the current tab. Reopening
 a contact restores its draft, history and scroll position for this session.
 Use `//text` to send a literal leading slash.
 
@@ -87,8 +98,10 @@ available if a future Core version returns an unsupported SVG format.
 
 ## Preferences and colors
 
-Preferences are saved in `$XDG_CONFIG_HOME/parla/terminal.ini` (normally
-`~/.config/parla/terminal.ini`), separate from GUI preferences. Contact grouping
+Layout preferences are saved in `$XDG_CONFIG_HOME/parla/terminal.ini` (normally
+`~/.config/parla/terminal.ini`), separate from GUI preferences. The selected theme
+and color overrides live alongside it in `colors.ini`. Older colors saved in
+`terminal.ini` are moved automatically. Contact grouping
 and sorting changed with the keyboard also persist. Pins are stored by Core
 and shared with the GUI. Existing saved choices take precedence over defaults.
 
@@ -101,7 +114,7 @@ and shared with the GUI. Existing saved choices take precedence over defaults.
 /set message_layout=compact
 /set markdown=on
 /set nick_colors=on
-/color theme=ocean
+/theme ocean
 /color status=white:blue
 /color selected_contact=white:blue
 /color contact_preview=#999999
@@ -109,6 +122,7 @@ and shared with the GUI. Existing saved choices take precedence over defaults.
 /color own_nick=#4ade80
 /color message=#e2e8f0:#0f172a
 /color status=inherit
+/theme reset
 ```
 
 `/set` lists layout/printing options; `/set NAME` shows one value. Assignments
@@ -124,7 +138,21 @@ Parla and Contacts stay open; other tabs can be closed.
 members, permission to send, and disappearing-message duration. `/info` also
 prints these details in Parla. The panel hides below 72 columns.
 
-`/color` lists effective colors. Presets are `default`, `light`, and `ocean`.
+`/theme` lists the current theme and available presets: `default` (lavender and
+teal), `ocean` (blue and cyan), `forest` (green), `ember` (orange), `ansi` (basic
+ANSI colors), and `mono` (terminal defaults without color). The four RGB palettes
+share the shipped backgrounds. `ansi` and `mono` keep the terminal's background
+and use reverse video for selections; neither requires RGB or 256-color support.
+The old `light` preset falls back to `default`.
+
+`/color` lists effective colors. Overrides persist across theme changes and
+restarts. `/color ROLE=inherit` removes one override. `/theme reset` removes
+`colors.ini`, selects `default`, and clears all overrides without changing layout
+preferences. Deleting `colors.ini` manually restores shipped colors on the next
+run. `/color theme=NAME` and `/set theme=NAME` remain supported.
+Active tabs retain their highlight even when
+they have unread messages; the count remains visible. The input uses a `›`
+prompt, and Parla shows a `/help` hint when the draft is empty.
 Roles include `text`, `message`, `timestamp`, `own_nick`, `nick1`–`nick4`,
 `status`, `tab`, `active_tab`, `unread_tab`, `contact`, `active_contact`,
 `open_contact`, `selected_contact`, `input`, `separator`, `info`, `completion`,
@@ -178,6 +206,9 @@ line and input editor. `add_tab(id, title)` returns the existing tab for a
 known ID; `select_tab(id)` activates it. Each `Buffer` owns its draft and
 scroll offset. `append()` parses Markdown; `append_text()` displays literal
 text; `append_message(time, nick, markdown)` adds an IRC-style message.
+`append_notice(time, label, text, style)` adds a sanitized plain-text activity
+entry with a colored label and aligned continuation lines. `input_hint` supplies
+display-only text for an empty draft.
 `clear()` clears history while preserving the draft. `set_contacts()`
 preserves selection by ID and synchronizes tab unread counts from each
 `Contact.unread_count`; `Buffer.set_unread()` also works independently.

@@ -1,4 +1,4 @@
-#include "webxdc_macos.h"
+#include "webxdc_view.h"
 
 #if defined(__APPLE__)
 
@@ -130,6 +130,21 @@ setup_webview (ParlaWebxdcController *c, WKContentRuleList *rules)
 	[[cfg userContentController] addScriptMessageHandler:c name:@"webxdc"];
 	if (rules)
 		[[cfg userContentController] addContentRuleList:rules];
+	if (!c->allow_wasm) {
+		/* Some WKWebView releases ignore wasm-unsafe-eval in CSP, so remove
+		 * the constructor at document start in every frame as well. Dedicated
+		 * workers can still reach the engine API; that gap is documented. */
+		NSString *source =
+		    @"(()=>{try{Object.defineProperty(window,'WebAssembly',{"
+		     "value:undefined,writable:false,configurable:false})}catch(e){"
+		     "try{window.WebAssembly=undefined}catch(e2){}}})();";
+		WKUserScript *script = [[WKUserScript alloc]
+		    initWithSource:source
+		    injectionTime:WKUserScriptInjectionTimeAtDocumentStart
+		    forMainFrameOnly:NO];
+		[[cfg userContentController] addUserScript:script];
+		[script release];
+	}
 	if (!c->allow_webgl) {
 		/* WKWebView has no public WebGL-disable preference. Install this at
 		 * document start in every frame as the strongest public best-effort
@@ -220,6 +235,11 @@ setup_webview (ParlaWebxdcController *c, WKContentRuleList *rules)
 	(void)wv;
 	if (closed)
 		return;
+	if (![[[[task request] URL] host] isEqualToString:@"app"]) {
+		[task didFailWithError:[NSError errorWithDomain:NSURLErrorDomain
+		    code:NSURLErrorUnsupportedURL userInfo:nil]];
+		return;
+	}
 	[live_tasks addObject:task];
 	NSString *path = [[[task request] URL] path];
 	BlobIdleData *d = g_new0 (BlobIdleData, 1);
@@ -259,7 +279,8 @@ setup_webview (ParlaWebxdcController *c, WKContentRuleList *rules)
 {
 	(void)wv;
 	NSString *scheme = [[[[action request] URL] scheme] lowercaseString];
-	decisionHandler ([scheme isEqualToString:@"webxdc"]
+	NSString *host = [[[[action request] URL] host] lowercaseString];
+	decisionHandler ([scheme isEqualToString:@"webxdc"] && [host isEqualToString:@"app"]
 	    ? WKNavigationActionPolicyAllow
 	    : WKNavigationActionPolicyCancel);
 }
@@ -386,9 +407,7 @@ parla_webxdc_finish_task (gpointer handle, gpointer task_ptr,
 	NSURL *url = [[task request] URL];
 	NSString *mime_string = [NSString stringWithUTF8String:mime];
 	NSURLResponse *resp;
-	if (!c->allow_wasm
-	    && [mime_string caseInsensitiveCompare:@"text/html"]
-	        == NSOrderedSame) {
+	{
 		/* CSP is meaningful on the document response. Keep an HTTP-style
 		 * response for its headers, but provide the required resource size. */
 		NSMutableDictionary *headers =
@@ -397,17 +416,10 @@ parla_webxdc_finish_task (gpointer handle, gpointer task_ptr,
 		        [NSString stringWithFormat:@"%d", data_length],
 		        @"Content-Length", nil];
 		headers[@"Content-Security-Policy"] =
-		    @"script-src 'self' 'unsafe-inline' data: blob: http: https:";
+		    [NSString stringWithUTF8String:parla_webxdc_csp (c->allow_internet, c->allow_wasm)];
 		resp = [[NSHTTPURLResponse alloc]
 		    initWithURL:url statusCode:200 HTTPVersion:@"HTTP/1.1"
 		    headerFields:headers];
-	} else {
-		/* WKURLSchemeTask serves a non-HTTP URL. NSURLResponse supplies
-		 * WebKit with both the MIME type and expected byte count. */
-		resp = [[NSURLResponse alloc]
-		    initWithURL:url MIMEType:mime_string
-		    expectedContentLength:(NSInteger)data_length
-		    textEncodingName:nil];
 	}
 	@try {
 		[task didReceiveResponse:resp];
