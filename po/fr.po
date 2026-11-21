@@ -606,7 +606,7 @@ msgstr "Groupe"
 
 #: src/chat_info_dialog.vala:288
 msgid "Mailing List"
-msgstr "Liste d'envoi"
+msgstr "Liste de réception"
 
 #: src/chat_info_dialog.vala:289
 msgid "Saved Messages"
@@ -2252,137 +2252,137 @@ msgstr "Ce message a été édité"
 
 #: src/message_row.vala:1197
 msgid "Play video"
-msgstr ""
+msgstr "Jouer la vidéo"
 
 #: src/message_row.vala:1198 src/message_row.vala:1445
 msgid "Download attachment"
-msgstr ""
+msgstr "Télécharger la pièce joint"
 
 #: src/message_row.vala:1296
 msgid "Sending failed"
-msgstr ""
+msgstr "Échec de l'envoi"
 
 #: src/message_row.vala:1308
 msgid "Sending…"
-msgstr ""
+msgstr "Envoi…"
 
 #: src/message_row.vala:1428
 msgid "Loading full message…"
-msgstr ""
+msgstr "Charger le message complet…"
 
 #: src/message_row.vala:1430
 msgid "Downloading attachment..."
-msgstr ""
+msgstr "Téléchargement des pièces jointes…"
 
 #: src/message_row.vala:1431
 msgid "Downloading full message..."
-msgstr ""
+msgstr "Téléchargement du message complet"
 
 #: src/message_row.vala:1446
 msgid "Download full message"
-msgstr ""
+msgstr "Télécharger le message complet"
 
 #: src/message_row.vala:1448
 msgid "Collapse"
-msgstr ""
+msgstr "Réduire"
 
 #: src/message_row.vala:1449
 msgid "Expand"
-msgstr ""
+msgstr "Étendre"
 
 #: src/message_row.vala:1464
 msgid "View full message"
-msgstr ""
+msgstr "Voir le message complet"
 
 #: src/message_row.vala:1674
 msgid "Mark unchecked"
-msgstr ""
+msgstr "Marquer décocher"
 
 #: src/message_row.vala:1675
 msgid "Mark checked"
-msgstr ""
+msgstr "Marquer cocher"
 
 #: src/message_row.vala:2056
 msgid "Show reactions"
-msgstr ""
+msgstr "Montrer les réactions"
 
 #: src/message_row.vala:2245
 msgid ", sending failed"
-msgstr ""
+msgstr ", échec de l'envoi"
 
 #: src/message_row.vala:2246
 msgid ", read"
-msgstr ""
+msgstr ", lu"
 
 #: src/message_row.vala:2247
 msgid ", delivered"
-msgstr ""
+msgstr ", livré"
 
 #: src/message_row.vala:2248
 msgid ", sending"
-msgstr ""
+msgstr ", envoi"
 
 #: src/message_row.vala:2249
 msgid ", sent"
-msgstr ""
+msgstr ", envoyé"
 
 #: src/message_row.vala:2251
 msgid ", forwarded"
-msgstr ""
+msgstr ", transféré"
 
 #: src/message_row.vala:2252
 msgid ", edited"
-msgstr ""
+msgstr ", modifié"
 
 #: src/message_row.vala:2255
 msgid ", replying to "
-msgstr ""
+msgstr ", répondant à "
 
 #: src/message_row.vala:2256
 msgid "a message"
-msgstr ""
+msgstr "un message"
 
 #: src/message_row.vala:2265
 msgid "empty message"
-msgstr ""
+msgstr "message vide"
 
 #: src/message_row.vala:2268
 msgid ", reactions: "
-msgstr ""
+msgstr ", réactions : "
 
 #: src/message_row.vala:2274
 #, c-format
 msgid "app %s"
-msgstr ""
+msgstr "application %s"
 
 #: src/message_row.vala:2277
 msgid "sticker"
-msgstr ""
+msgstr "autocollant"
 
 #: src/message_row.vala:2279
 msgid "photo"
-msgstr ""
+msgstr "photo"
 
 #: src/message_row.vala:2280
 msgid "video"
-msgstr ""
+msgstr "vidéo"
 
 #: src/message_row.vala:2281
 msgid "voice message"
-msgstr ""
+msgstr "message vocal"
 
 #: src/message_row.vala:2282
 msgid "audio"
-msgstr ""
+msgstr "audio"
 
 #: src/message_row.vala:2283
 #, c-format
 msgid "file %s"
-msgstr ""
+msgstr "fichier %s"
 
 #: src/message_row.vala:2298
 msgid "Unread messages"
-msgstr ""
+msgstr "Messages non lus"
 
 #: src/models.vala:11
 msgid ""
@@ -2390,47 +2390,56 @@ msgid ""
 "this history. Deletion is also requested on the server and linked devices "
 "using this profile. Other participants keep their copies."
 msgstr ""
+"Les messages et leurs pièces jointes, incluant les applications, sont "
+"retirés de cet historique. La suppression est également demandée sur le "
+"serveur et les appareils liés utilisant ce profil. Les autres participants "
+"gardent leur copie."
 
 #: src/models.vala:13
 msgid ""
 "Files saved elsewhere, forwarded copies and backups are not removed. This "
 "cannot be undone."
 msgstr ""
+"Fichiers enregistrés ailleurs, les copies transférés et les sauvegardes ne "
+"sont pas retirées. Ceci ne peut pas être annulé."
 
 #: src/models.vala:148
 msgid "Could not check message deletion options: "
-msgstr ""
+msgstr "Impossible de vérifier les options de suppression du message : "
 
 #: src/models.vala:152
 msgid "Delete Message?"
-msgstr ""
+msgstr "Supprimer le message ?"
 
 #: src/models.vala:153
 #, c-format
 msgid "Delete %d Messages?"
-msgstr ""
+msgstr "Supprimer %d messages ?"
 
 #: src/models.vala:154
 msgid "Delete for Me: "
-msgstr ""
+msgstr "Supprimer pour moi : "
 
 #: src/models.vala:156
 msgid ""
 "Delete for Everyone also asks other participants’ apps to delete these "
 "messages. Saved or forwarded copies may remain."
 msgstr ""
+"Supprimer pour tout le monde demande également aux applications des autres "
+"participants de supprimer ces messages. Les copies enregistrées ou transférées "
+"peuvent subsister."
 
 #: src/models.vala:161
 msgid "Delete for Me"
-msgstr ""
+msgstr "Supprimer pour moi"
 
 #: src/models.vala:164 src/models.vala:211
 msgid "Delete for Everyone"
-msgstr ""
+msgstr "Supprimer pour tout le monde"
 
 #: src/models.vala:191
 msgid "Delete Chat?"
-msgstr ""
+msgstr "Supprimer la conversation ?"
 
 #: src/models.vala:192
 #, c-format
@@ -2438,6 +2447,8 @@ msgid ""
 "Delete “%s” and its messages?\n"
 "\n"
 msgstr ""
+"Supprimer “%s” et ses messages ? \n"
+"\n"
 
 #: src/models.vala:194
 msgid ""
@@ -2445,20 +2456,24 @@ msgid ""
 "channel, unsubscribe from a mailing list, or block a contact. New messages "
 "may make the chat appear again."
 msgstr ""
+"Tous les brouillons dans cette conversation seront également supprimés. "
+"Ceci ne fait pas quitter le groupe ou le canal, ne désabonne pas d'une "
+"liste de réception, ni ne bloque de contact. De nouveaux messages pourraient "
+"faire réapparaitre la conversation."
 
 #: src/models.vala:196
 msgid "Delete Chat"
-msgstr ""
+msgstr "Supprimer la conversation"
 
 #: src/models.vala:202
 #, c-format
 msgid "Delete 1 message in “%s”?"
-msgstr ""
+msgstr "Supprimer 1 message parmi “%s” ? "
 
 #: src/models.vala:203
 #, c-format
 msgid "Delete %d messages in “%s”?"
-msgstr ""
+msgstr "Supprimer %d messages parmi “%s” ? "
 
 #: src/models.vala:205
 msgid ""
@@ -2468,49 +2483,56 @@ msgid ""
 "apps. Messages from other people, unencrypted messages and status messages "
 "are kept."
 msgstr ""
+"Seuls les messages chiffrés envoyés par ce profil sont sélectionnés. Ils "
+"seront, avec les pièces jointes (dont les applications), retirés de cet "
+"historique. La suppression sera demandée au serveur, aux appareils liés et "
+"aux applications des autres participants. Les messages des autres personnes, "
+"non chiffrés et de statut seront gardés."
 
 #: src/models.vala:208
 msgid "Delete Sent Messages for Everyone?"
-msgstr ""
+msgstr "Supprimer les messages envoyés pour tout le monde ? "
 
 #: src/models.vala:208 src/profile_dialog.vala:990
 msgid "Clear Chat?"
-msgstr ""
+msgstr "Vider la conversation ?"
 
 #: src/models.vala:209
 msgid ""
 "The chat, its draft and messages arriving after this confirmation opens are "
 "kept."
 msgstr ""
+"La conversation, ses brouillons et les messages arrivant après cette "
+"confirmations seront gardés"
 
 #: src/models.vala:211
 msgid "Clear for Me"
-msgstr ""
+msgstr "Vider pour moi"
 
 #: src/models.vala:229
 msgid "Could not check group membership: "
-msgstr ""
+msgstr "Impossible de vérifier l'appartenance au groupe : "
 
 #: src/models.vala:234
 msgid "This group or channel can no longer be left."
-msgstr ""
+msgstr "Ce groupe ou canal ne peut plus être quitté."
 
 #: src/models.vala:238
 msgid "Leave Channel"
-msgstr ""
+msgstr "Quitter le canal"
 
 #: src/models.vala:238
 msgid "Leave Group"
-msgstr ""
+msgstr "Quitter le groupe"
 
 #: src/models.vala:239
 #, c-format
 msgid "Leave “%s” and stop receiving new messages?"
-msgstr ""
+msgstr "Quitter “%s” et arrêter de recevoir de nouveaux messages ?"
 
 #: src/models.vala:242
 msgid " Other members will be notified."
-msgstr ""
+msgstr " Les autres membres seront avertis."
 
 #: src/models.vala:243
 #, c-format
@@ -2519,26 +2541,30 @@ msgid ""
 "draft, messages and attachments for this profile. Deletion is requested on "
 "the server and linked devices. Other participants keep their history."
 msgstr ""
+"%s garde l'historique de la conversation. Quitter et Supprimer suppriment "
+"également la conversation, ses brouillons, messages et pièces jointes pour "
+"ce profil. La suppression sera demandée au serveur et aux appareils liés. "
+"Les autres participants gardent leur historique."
 
 #: src/models.vala:245
 msgid "Leave Channel?"
-msgstr ""
+msgstr "Quitter le canal ?"
 
 #: src/models.vala:245
 msgid "Leave Group?"
-msgstr ""
+msgstr "Quitter le groupe ?"
 
 #: src/models.vala:248
 msgid "Leave and Delete"
-msgstr ""
+msgstr "Quitter et supprimer"
 
 #: src/models.vala:263
 msgid "Block Contact?"
-msgstr ""
+msgstr "Bloquer le contact ?"
 
 #: src/models.vala:263
 msgid "Block Chat?"
-msgstr ""
+msgstr "Bloquer la conversation ?"
 
 #: src/models.vala:264
 #, c-format
@@ -2546,340 +2572,358 @@ msgid ""
 "Block “%s”? The chat is hidden and its history is kept. Blocking syncs to "
 "linked devices using this profile."
 msgstr ""
+"Bloquer “%s” ? La conversation sera cachée et son historique sera gardé. "
+"Les contacts bloqués sont synchronisés avec les appareils liés." 
 
 #: src/models.vala:267
 msgid ""
 "Direct messages from this contact will be blocked. Their messages in shared "
 "groups can still appear. The contact is not notified."
 msgstr ""
+"Les messages privées venant de ce contact seront bloqués. Ses messages dans "
+"les groupes apparaîtront toujours. Le contact n'est pas averti."
 
 #: src/models.vala:268
 msgid ""
 "New messages in this chat will be hidden. This does not leave a channel or "
 "unsubscribe from a mailing list."
 msgstr ""
+"Les nouveaux messages de cette conversation seront cachés. Ceci ne fait pas "
+"quitter de groupe ni ne désabonne de liste de réception."
 
 #: src/models.vala:269
 msgid "Unblock it later from Profile → Blocked Contacts."
-msgstr ""
+msgstr "Débloquez le plus tard depuis Profil → Contacts bloqués"
 
 #: src/models.vala:270
 msgid "Block Contact"
-msgstr ""
+msgstr "Bloquer le contact"
 
 #: src/models.vala:270
 msgid "Block Chat"
-msgstr ""
+msgstr "Bloquer la conversation"
 
 #: src/models.vala:468
 msgid "Could not load messages to clear"
-msgstr ""
+msgstr "Impossible de charger les messages à vider"
 
 #: src/new_group_dialog.vala:20 src/window.vala:3322
 msgid "New Channel"
-msgstr ""
+msgstr "Nouveau canal"
 
 #: src/new_group_dialog.vala:20 src/window.vala:3321
 msgid "New Group"
-msgstr ""
+msgstr "Nouveau groupe"
 
 #: src/new_group_dialog.vala:28 src/sticker_manager_dialog.vala:115
 msgid "Create"
-msgstr ""
+msgstr "Créer"
 
 #: src/new_group_dialog.vala:47
 msgid "Set Avatar"
-msgstr ""
+msgstr "Définir l'avatar"
 
 #. Name
 #: src/new_group_dialog.vala:56
 msgid "Channel Name"
-msgstr ""
+msgstr "Nom du canal"
 
 #: src/new_group_dialog.vala:56
 msgid "Group Name"
-msgstr ""
+msgstr "Nom du groupe"
 
 #: src/new_group_dialog.vala:62
 msgid "My Channel"
-msgstr ""
+msgstr "Mon canal"
 
 #: src/new_group_dialog.vala:63
 msgid "My Group"
-msgstr ""
+msgstr "Mon groupe"
 
 #: src/new_group_dialog.vala:72
 msgid ""
 "Only you can write in a channel. Members read messages without seeing each "
 "other."
 msgstr ""
+"Vous seulement pouvez écrire dans un canal. Les membres lisent les messages "
+"sans se voir entre eux."
 
 #: src/new_group_dialog.vala:84
 msgid "Members"
-msgstr ""
+msgstr "Membres"
 
 #. Add member button — opens contact picker
 #: src/new_group_dialog.vala:92
 msgid "Add Member…"
-msgstr ""
+msgstr "Ajouter un membre…"
 
 #: src/new_group_dialog.vala:198
 msgid "Select Channel Avatar"
-msgstr ""
+msgstr "Sélectionner l'avatar du canal"
 
 #: src/new_group_dialog.vala:198
 msgid "Select Group Avatar"
-msgstr ""
+msgstr "Sélectionner l'avatar du groupe"
 
 #: src/pinned_messages_manager.vala:81
 msgid "Failed to update pin: RPC is not connected"
-msgstr ""
+msgstr "Impossible de mettre à jour l'épingle : RPC n'est pas connecté"
 
 #: src/platform_macos.m:438
 msgid ""
 "Microphone access is restricted on this Mac (Screen Time or a management "
 "profile)"
 msgstr ""
+"L'accès au microphone est restreint sur ce Mac (Le temps d'écran ou "
+"un profil de gestion)"
 
 #: src/platform_macos.m:451
 msgid ""
 "Microphone access is turned off for Parla. Allow it in System Settings › "
 "Privacy & Security › Microphone"
 msgstr ""
+"L'accès au microphone est désactivé pour Parla. Autorisé le dans "
+"Paramètre système › Vie privée & Sécurité › Microphone."
 
 #: src/platform_macos.m:465
 msgid "No microphone is connected to this Mac"
-msgstr ""
+msgstr "Aucun microphone n'est connecté à ce Mac"
 
 #: src/platform_macos.m:483
 msgid "Could not set up the AAC encoder"
-msgstr ""
+msgstr "Impossible de définir l'encodeur AAC"
 
 #: src/platform_macos.m:488
 msgid "Could not start capturing from the default microphone"
-msgstr ""
+msgstr "Impossible de démarrer l'enregistrement depuis le microphone par défaut"
 
 #. Stopped while the permission prompt was still open.
 #: src/platform_macos.m:500
 msgid "Recording stopped before the microphone was ready"
-msgstr ""
+msgstr "L'enregistrement a été arrêté avant que le microphone ne soit prêt"
 
 #: src/platform_macos.m:512
 msgid "The microphone stopped delivering audio"
-msgstr ""
+msgstr "Le microphone a arrêté de fournir l'audio"
 
 #: src/platform_macos.m:513
 msgid "The voice message could not be written"
-msgstr ""
+msgstr "Le message vocal n'a pas pu être écrit"
 
 #: src/platform_macos.m:522
 msgid "The AAC encoder failed"
-msgstr ""
+msgstr "Échec de l'encodeur AAC"
 
 #: src/profile_dialog.vala:96
 msgid "Profile"
-msgstr ""
+msgstr "Profile"
 
 #: src/profile_dialog.vala:108 src/profile_dialog.vala:1075
 msgid "Invite Code"
-msgstr ""
+msgstr "Code d'invitation"
 
 #: src/profile_dialog.vala:109
 msgid "Show a contact invite QR code"
-msgstr ""
+msgstr "Montrer un QR code d'invitation de contact"
 
 #: src/profile_dialog.vala:109
 msgid "Share your contact"
-msgstr ""
+msgstr "Partager votre contact"
 
 #: src/profile_dialog.vala:118 src/relay_picker.vala:241
 msgid "Relays"
-msgstr ""
+msgstr "Relais"
 
 #: src/profile_dialog.vala:119
 msgid "Manage chatmail relays for this profile"
-msgstr ""
+msgstr "Gérer les relais chatmail pour ce profil"
 
 #: src/profile_dialog.vala:119
 msgid "Manage the servers used by this profile"
-msgstr ""
+msgstr "Gérer le serveur utilisé par ce profil"
 
 #: src/profile_dialog.vala:122
 msgid "Add Second Device…"
-msgstr ""
+msgstr "Ajouter un deuxième appareil"
 
 #: src/profile_dialog.vala:123
 msgid "Show a setup QR code for another device"
-msgstr ""
+msgstr "Montre un QR code pour lier un autre appareil"
 
 #: src/profile_dialog.vala:124
 msgid "Use this profile on another device"
-msgstr ""
+msgstr "Utiliser ce profil sur un autre appareil"
 
 #: src/profile_dialog.vala:128 src/profile_dialog.vala:518
 msgid "Blocked Contacts"
-msgstr ""
+msgstr "Contacts bloqués"
 
 #: src/profile_dialog.vala:128
 msgid "Unblock contacts, channels and mailing lists"
-msgstr ""
+msgstr "Débloquer les contacts, canaux et listes de reception"
 
 #: src/profile_dialog.vala:129
 msgid "Manage blocked contacts for this profile"
-msgstr ""
+msgstr "Gérer les contacts bloqués pour ce profil"
 
 #: src/profile_dialog.vala:135
 msgid "Remove Profile…"
-msgstr ""
+msgstr "Retirer le profil…"
 
 #: src/profile_dialog.vala:136
 msgid "Remove this profile from this device"
-msgstr ""
+msgstr "Retire ce profil de l'appareil"
 
 #: src/profile_dialog.vala:136
 msgid "Remove the profile and its messages from this device"
-msgstr ""
+msgstr "Retire le profil et ses messages de cet appareil"
 
 #: src/profile_dialog.vala:183
 msgid "Change Profile Picture…"
-msgstr ""
+msgstr "Modifier la photo de profil"
 
 #: src/profile_dialog.vala:206
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #: src/profile_dialog.vala:210
 msgid "About this profile"
-msgstr ""
+msgstr "À propos de ce profil"
 
 #: src/profile_dialog.vala:211
 msgid "Bio"
-msgstr ""
+msgstr "Biographie"
 
 #: src/profile_dialog.vala:217
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: src/profile_dialog.vala:252
 msgid "Make Default"
-msgstr ""
+msgstr "Marquer comme par défaut"
 
 #: src/profile_dialog.vala:255
 msgid "Open This Profile When Parla Starts"
-msgstr ""
+msgstr "Ouvrir ce profil quand Parla démarre"
 
 #: src/profile_dialog.vala:270
 msgid "Read Receipts"
-msgstr ""
+msgstr "Accusé de lecture"
 
 #: src/profile_dialog.vala:274
 msgid ""
 "Let contacts know when their messages have been read. This setting syncs to "
 "other devices using this profile."
 msgstr ""
+"Informe les contacts une fois leurs messages lus. Ce paramètre est synchronisé "
+"avec les autres appareils liés à ce profile."
 
 #: src/profile_dialog.vala:294 src/profile_dialog.vala:332
 #: src/settings_dialog.vala:1636 src/settings_dialog.vala:1637
 #: src/settings_dialog.vala:1703 src/window.vala:3393
 msgid "No active profile"
-msgstr ""
+msgstr "Aucun profil actif"
 
 #: src/profile_dialog.vala:308
 msgid "Unable to read read receipt setting"
-msgstr ""
+msgstr "Impossible de lire le paramètre d'accusé de lecture"
 
 #: src/profile_dialog.vala:323
 msgid ""
 "Contacts can see when their messages have been read. This setting syncs to "
 "other devices using this profile."
 msgstr ""
+"Les contacts peuvent voir que leurs messages ont été lus. Ce paramètre "
+"est synchronisé avec les autres appareils liés à ce profil."
 
 #: src/profile_dialog.vala:324
 msgid ""
 "Read receipts are not sent. This setting syncs to other devices using this "
 "profile."
 msgstr ""
+"Les accusés de réception ne sont pas envoyé. Ce paramètre est synchronisé "
+"avec les autres appareils liés à ce profil."
 
 #: src/profile_dialog.vala:349
 msgid "Failed to save read receipt setting: "
-msgstr ""
+msgstr "Impossible d'enregistrer le paramètre d'accusé de réception : "
 
 #: src/profile_dialog.vala:377
 msgid "This profile opens when Parla starts"
-msgstr ""
+msgstr "Ce profil s'ouvre quand Parla démarre"
 
 #: src/profile_dialog.vala:378
 msgid "Open this profile automatically when Parla starts"
-msgstr ""
+msgstr "Ouvre ce profil automatiquement quand Parla démarre"
 
 #: src/profile_dialog.vala:385
 msgid "Storage and Connection"
-msgstr ""
+msgstr "Stockage et connexion"
 
 #: src/profile_dialog.vala:392
 msgid "Checking connection…"
-msgstr ""
+msgstr "Vérification de la connexion…"
 
 #: src/profile_dialog.vala:401
 msgid "Loading server quota…"
-msgstr ""
+msgstr "Chargement du quota du serveur…"
 
 #: src/profile_dialog.vala:408
 msgid "Refresh storage and connectivity"
-msgstr ""
+msgstr "Rafraichir le stockage et la connexion"
 
 #: src/profile_dialog.vala:415 src/profile_dialog.vala:660
 msgid "Storage Details"
-msgstr ""
+msgstr "Détails du stockage"
 
 #: src/profile_dialog.vala:416
 msgid "Show Storage by Chat"
-msgstr ""
+msgstr "Montrer le stockage par conversation"
 
 #: src/profile_dialog.vala:470
 msgid "Connection details unavailable"
-msgstr ""
+msgstr "Les détails de la connexion de sont pas disponible"
 
 #: src/profile_dialog.vala:477
 msgid "Connected; all background work is done"
-msgstr ""
+msgstr "Connecté ; toutes les taches d'arrière plan sont terminées"
 
 #: src/profile_dialog.vala:478
 msgid "Connected; sending or syncing messages"
-msgstr ""
+msgstr "Connecté ; envoi ou synchronisation des messages"
 
 #: src/profile_dialog.vala:479
 msgid "Connecting to the server"
-msgstr ""
+msgstr "Connexion au serveur"
 
 #: src/profile_dialog.vala:480 src/window.vala:2620 src/window.vala:4213
 #: src/window.vala:4233
 msgid "Not connected"
-msgstr ""
+msgstr "Non connecté"
 
 #: src/profile_dialog.vala:481
 msgid "Connection state unknown"
-msgstr ""
+msgstr "L'état de connexion est inconnu"
 
 #: src/profile_dialog.vala:528
 msgid "No blocked contacts"
-msgstr ""
+msgstr "Aucun contact bloqué"
 
 #: src/profile_dialog.vala:539
 msgid "Unblock"
-msgstr ""
+msgstr "Débloquer"
 
 #: src/profile_dialog.vala:568
 msgid "Could not load blocked contacts: "
-msgstr ""
+msgstr "Impossible de charger les contacts bloqués : "
 
 #: src/profile_dialog.vala:578
 msgid "this profile"
-msgstr ""
+msgstr "ce profile"
 
 #: src/profile_dialog.vala:581
 msgid "Remove Profile from This Device?"
-msgstr ""
+msgstr "Retirer le profil de cet appareil ?"
 
 #: src/profile_dialog.vala:582
 #, c-format
@@ -2892,117 +2936,124 @@ msgid ""
 "Without a backup or another device using this profile, access to it will be "
 "lost. This cannot be undone."
 msgstr ""
+"Retirer \"%s\" de cet appareil, incluant ses conversations, contacts, pièces "
+"jointes téléchargées et clés ? Ceci ne supprimera pas le compte du serveur, "
+"les sauvegardes ou les fichiers enregistrés ailleurs. Les autres appareils "
+"et participants gardent leurs données. \n"
+"\n"
+"Sans sauvegarde ou autre appareil utilisant ce profil, son accès sera perdu "
+"Ceci est irréversible."
 
 #: src/profile_dialog.vala:583
 msgid "Remove Profile"
-msgstr ""
+msgstr "Retirer le profil"
 
 #: src/profile_dialog.vala:602
 msgid "Select Avatar"
-msgstr ""
+msgstr "Sélectionner l'avatar"
 
 #: src/profile_dialog.vala:668
 msgid "Rescan storage usage"
-msgstr ""
+msgstr "Rescanner l'utilisation du stockage"
 
 #: src/profile_dialog.vala:675
 msgid "Server Quota"
-msgstr ""
+msgstr "Quota du serveur"
 
 #: src/profile_dialog.vala:681
 msgid "Loading quota…"
-msgstr ""
+msgstr "Chargement du quota…"
 
 #: src/profile_dialog.vala:684
 msgid "Local Copies"
-msgstr ""
+msgstr "Copies locales"
 
 #: src/profile_dialog.vala:692 src/profile_dialog.vala:731
 #: src/profile_dialog.vala:733
 msgid "Scanning local files…"
-msgstr ""
+msgstr "Scan des fichiers locaux…"
 
 #: src/profile_dialog.vala:701
 msgid "Chats by Storage Size"
-msgstr ""
+msgstr "Conversation par taille de stockage"
 
 #: src/profile_dialog.vala:703
 msgid "Preparing scan…"
-msgstr ""
+msgstr "Préparation du scan…"
 
 #: src/profile_dialog.vala:730
 msgid "Scanning chats…"
-msgstr ""
+msgstr "Scan des conversation…"
 
 #: src/profile_dialog.vala:751
 msgid "Server quota unavailable: "
-msgstr ""
+msgstr "Quota du serveur indisponible : "
 
 #: src/profile_dialog.vala:766
 #, c-format
 msgid "Downloaded message files: %.0f%%"
-msgstr ""
+msgstr "Fichiers des messages téléchargés : %.0f%%"
 
 #: src/profile_dialog.vala:767
 msgid "Local storage total unavailable"
-msgstr ""
+msgstr "Total du stockage local indisponible"
 
 #: src/profile_dialog.vala:770
 #, c-format
 msgid "%s known attachment payload"
-msgstr ""
+msgstr "%s de charge des pièces jointes connues"
 
 #: src/profile_dialog.vala:774
 msgid "No downloaded files found in chats"
-msgstr ""
+msgstr "Aucun fichier téléchargé trouvé dans les conversations"
 
 #: src/profile_dialog.vala:775
 #, c-format
 msgid "%d chat with local or attached files"
 msgid_plural "%d chats with local or attached files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d conversation avec des fichiers locaux ou des pièces jointes"
+msgstr[1] "%d conversations avec des fichiers locaux ou des pièces jointes"
 
 #: src/profile_dialog.vala:779
 msgid "Storage scan failed: "
-msgstr ""
+msgstr "Échec du scan du stockage : "
 
 #: src/profile_dialog.vala:780 src/profile_dialog.vala:781
 msgid "Local storage scan incomplete"
-msgstr ""
+msgstr "Scan du stockage local incomplet"
 
 #: src/profile_dialog.vala:795
 msgid "Could not load chats for storage scan"
-msgstr ""
+msgstr "Impossible de charger les conversations pour le scan du stockage"
 
 #: src/profile_dialog.vala:814
 #, c-format
 msgid "Scanning %s…"
-msgstr ""
+msgstr "Scan %s…"
 
 #: src/profile_dialog.vala:833
 #, c-format
 msgid "Chat #%d"
-msgstr ""
+msgstr "Conversation #%d"
 
 #: src/profile_dialog.vala:964
 #, c-format
 msgid "%s local · %s attached · %s · %s"
-msgstr ""
+msgstr "%s local ⋅ %s de pièces jointes ⋅ %s ⋅ %s"
 
 #: src/profile_dialog.vala:967
 #, c-format
 msgid "%d file"
 msgid_plural "%d files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d fichier"
+msgstr[1] "%d fichiers"
 
 #: src/profile_dialog.vala:969
 #, c-format
 msgid "%d message"
 msgid_plural "%d messages"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d message"
+msgstr[1] "%d messages"
 
 #: src/profile_dialog.vala:991
 #, c-format
@@ -3010,66 +3061,68 @@ msgid ""
 "Choose which messages to clear from “%s”. You can review the number of "
 "messages before deleting them."
 msgstr ""
+"Choisissez quels messages vider de “%s”. Vous pouvez vérifier le nombre "
+"de messages avant de les supprimer."
 
 #: src/profile_dialog.vala:993
 msgid "Keep recent messages"
-msgstr ""
+msgstr "Garder les messages récents"
 
 #: src/profile_dialog.vala:997 src/profile_dialog.vala:1002
 msgid "Days to keep"
-msgstr ""
+msgstr "Jours a garder"
 
 #: src/profile_dialog.vala:1009
 msgid "Review Messages"
-msgstr ""
+msgstr "Vérifier les messages"
 
 #: src/profile_dialog.vala:1025
 msgid "No messages match the selected age range."
-msgstr ""
+msgstr "Aucun message ne correspond à la durée sélectionnée."
 
 #: src/profile_dialog.vala:1080
 msgid "Preparing invite code…"
-msgstr ""
+msgstr "Préparation du code d'invitation…"
 
 #: src/profile_dialog.vala:1087 src/profile_dialog.vala:1148
 msgid "Deactivate Link"
-msgstr ""
+msgstr "Désactiver le lien"
 
 #: src/profile_dialog.vala:1113 src/profile_dialog.vala:1152
 msgid "Share this QR code or invite link to let others join."
-msgstr ""
+msgstr "Partagez ce code QR ou lien d'invitation pour que d'autres vous rejoignent."
 
 #: src/profile_dialog.vala:1114
 msgid "Share this QR code with another user, or copy the invite link below."
-msgstr ""
+msgstr "Partagez ce code QR avec un autre utilisation, ou copiez le lien d'invitation ci-dessous."
 
 #: src/profile_dialog.vala:1116
 msgid "Invite link is ready, but the QR image could not be rendered: "
-msgstr ""
+msgstr "Le lien d'invitation est prêt, mais l'image du code QR n'a pas pu être générée : "
 
 #: src/profile_dialog.vala:1154
 msgid "Activate Link"
-msgstr ""
+msgstr "Activer le lien"
 
 #: src/profile_dialog.vala:1158
 msgid "This invite link is deactivated — activate it to let others join."
-msgstr ""
+msgstr "Ce lien d'invitation est désactivé — activez le pour que d'autres vous rejoignent."
 
 #: src/profile_dialog.vala:1167
 msgid "Deactivating…"
-msgstr ""
+msgstr "Désactivation…"
 
 #: src/profile_dialog.vala:1167
 msgid "Activating…"
-msgstr ""
+msgstr "Activation…"
 
 #: src/profile_dialog.vala:1174
 msgid "Could not update the invite link: "
-msgstr ""
+msgstr "Impossible de mettre à jour le lien d'invitation : "
 
 #: src/profile_dialog.vala:1183
 msgid "Invite code creation failed: "
-msgstr ""
+msgstr "Échec de la création du code d'invitation : "
 
 #: src/profile_dialog.vala:1200
 msgid "Add Second Device"
