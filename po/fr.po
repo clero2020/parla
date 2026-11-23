@@ -1858,14 +1858,12 @@ msgstr[1] "%d fichiers enregistrés"
 #: src/gallery_dialog.vala:1523
 #, c-format
 msgid ", %d failed"
-msgstr[0] ", %d échoué"
-msgstr[1] ", %d échoués"
+msgstr ", échec de %d"
 
 #: src/gallery_dialog.vala:1524
 #, c-format
 msgid ", %d not downloaded"
-msgstr[0] ", %d non téléchargé"
-msgstr[1] ", %d non téléchargés"
+msgstr ", %d non téléchargé"
 
 #: src/image_viewer.vala:184
 msgid "Cannot open image: "
@@ -3126,173 +3124,173 @@ msgstr "Échec de la création du code d'invitation : "
 
 #: src/profile_dialog.vala:1200
 msgid "Add Second Device"
-msgstr ""
+msgstr "Ajouter un deuxième appareil"
 
 #: src/profile_dialog.vala:1205
 msgid "Preparing account…"
-msgstr ""
+msgstr "Préparation du compte…"
 
 #: src/profile_dialog.vala:1207
 msgid "Copy Text"
-msgstr ""
+msgstr "Copier le texte"
 
 #: src/profile_dialog.vala:1241
 msgid "Scan this QR code with the second device, or copy the text below."
-msgstr ""
+msgstr "Scannez ce code QR avec le deuxième appareil, ou copiez le texte ci-dessous. "
 
 #: src/profile_dialog.vala:1242
 msgid "QR text is ready, but the image could not be rendered: "
-msgstr ""
+msgstr "Le texte du code QR est prêt, mais l'image n'a pas pu être rendu : "
 
 #: src/profile_dialog.vala:1246
 msgid "Second-device setup failed: "
-msgstr ""
+msgstr "Échec de la configuration du deuxième appareil : "
 
 #: src/quick_switch_dialog.vala:13
 msgid "Switch Chat"
-msgstr ""
+msgstr "Changer de conversation"
 
 #: src/quick_switch_dialog.vala:28
 msgid "Type to filter chats…"
-msgstr ""
+msgstr "Écrivez pour filtrer les conversations…"
 
 #: src/relay_picker.vala:15
 msgid "Default"
-msgstr ""
+msgstr "Défaut"
 
 #: src/relay_picker.vala:16
 msgid "German"
-msgstr ""
+msgstr "Allemand"
 
 #: src/relay_picker.vala:17
 msgid "Poland"
-msgstr ""
+msgstr "Pologne"
 
 #: src/relay_picker.vala:18 src/relay_picker.vala:19
 msgid "Italy"
-msgstr ""
+msgstr "Italie"
 
 #: src/relay_picker.vala:20 src/relay_picker.vala:31
 msgid "Falkenstein, Germany"
-msgstr ""
+msgstr "Falkenstein, Allemagne"
 
 #: src/relay_picker.vala:21
 msgid "Santa Clara, USA"
-msgstr ""
+msgstr "Santa Clara, États-Unis"
 
 #: src/relay_picker.vala:22
 msgid "Nuremberg, Germany"
-msgstr ""
+msgstr "Nuremberg, Allemagne"
 
 #: src/relay_picker.vala:23
 msgid "Roubaix, France"
-msgstr ""
+msgstr "Roubaix, France"
 
 #: src/relay_picker.vala:24
 msgid "Quebec, Canada"
-msgstr ""
+msgstr "Quebec, Canada"
 
 #: src/relay_picker.vala:25
 msgid "Melbourne, Australia"
-msgstr ""
+msgstr "Melbourne, Australie"
 
 #: src/relay_picker.vala:26
 msgid "Johannesburg, South Africa"
-msgstr ""
+msgstr "Johannesburg, Afrique du Sud"
 
 #: src/relay_picker.vala:27
 msgid "Bangalore, India"
-msgstr ""
+msgstr "Bangalore, Inde"
 
 #: src/relay_picker.vala:28
 msgid "Orastie, Romania"
-msgstr ""
+msgstr "Orastie, Roumanie"
 
 #: src/relay_picker.vala:29
 msgid "Warsaw, Poland"
-msgstr ""
+msgstr "Varsovie, Pologne"
 
 #: src/relay_picker.vala:30
 msgid "Helsinki, Finland"
-msgstr ""
+msgstr "Helsingki, Finlande"
 
 #: src/relay_picker.vala:32
 msgid "Prague, Czechia"
-msgstr ""
+msgstr "Prague, République Tchèque"
 
 #: src/relay_picker.vala:33
 msgid "Zug, Switzerland"
-msgstr ""
+msgstr "Zug, Suisse"
 
 #: src/relay_picker.vala:34
 msgid "Lviv, Ukraine"
-msgstr ""
+msgstr "Lviv, Ukraine"
 
 #: src/relay_picker.vala:35
 msgid "Iceland/Japan/Kenya/South Africa"
-msgstr ""
+msgstr "Islande/Japon/Kenya/Afrique du Sud"
 
 #: src/relay_picker.vala:36
 msgid "Gravelines, France"
-msgstr ""
+msgstr "Gravelines, France"
 
 #: src/relay_picker.vala:37
 msgid "Frankfurt, Germany"
-msgstr ""
+msgstr "Frankfurt, Allemagne"
 
 #: src/relay_picker.vala:38
 msgid "Elk Grove Village, USA"
-msgstr ""
+msgstr "Elk Grove Village, États-Unis"
 
 #: src/relay_picker.vala:39
 msgid "Ashburn, USA"
-msgstr ""
+msgstr "Ashburn, États-Unis"
 
 #: src/relay_picker.vala:40
 msgid "Roon, Netherlands"
-msgstr ""
+msgstr "Roon, Pays-Bas"
 
 #: src/relay_picker.vala:76
 msgid "Automatic (recommended)"
-msgstr ""
+msgstr "Automatique (recommandé)"
 
 #: src/relay_picker.vala:90
 msgid "Custom server name"
-msgstr ""
+msgstr "Nom customisé du serveur"
 
 #: src/relay_picker.vala:103
 msgid "Discover from Contacts"
-msgstr ""
+msgstr "Découvrir depuis les contacts"
 
 #: src/relay_picker.vala:107
 msgid "Scan contacts on your other profiles and add the relays they use."
-msgstr ""
+msgstr "Scan les contacts de vos autres profils et ajoute les relais qu'ils utilisent."
 
 #: src/relay_picker.vala:119
 msgid "Scanning…"
-msgstr ""
+msgstr "Scan…"
 
 #: src/relay_picker.vala:127
 msgid "Failed to scan contacts: "
-msgstr ""
+msgstr "Échec du scan des contacts : "
 
 #: src/relay_picker.vala:133
 #, c-format
 msgid "Found %d new relay"
 msgid_plural "Found %d new relays"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d nouveau relai trouvé"
+msgstr[1] "%d nouveaux relais trouvés"
 
 #: src/relay_picker.vala:135
 msgid "No new relays"
-msgstr ""
+msgstr "Aucun nouveau relai"
 
 #: src/relay_picker.vala:191
 #, c-format
 msgid "%d contact"
 msgid_plural "%d contacts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d contact"
+msgstr[1] "%d contacts"
 
 #: src/relay_picker.vala:257
 msgid ""
